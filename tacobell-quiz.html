@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Which Taco Bell Item Are You?</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #A6E3E9, #71C9CE);
+            font-family: 'Trebuchet MS', sans-serif;
+            text-align: center;
+            padding: 2rem;
+            color: #2c2c2c;
+        }
+        h1 {
+            color: #004e4e;
+            margin-bottom: 1rem;
+            text-decoration: underline;
+        }
+
+        .title-font {
+            font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif
+        }
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            padding-left: 1rem;
+
+        }
+        button {
+            background-color: #00b4b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #008c8c;
+        }
+        #result {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+        .back-link {
+            margin-top: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: #004e4e;
+        }
+
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title-font">Which Taco Bell Item Are You?</h1>
+    <div class="quiz-container">
+        <div class="question">
+            <p class="question-text">1. What's your vibe?</p>
+            <label><input type="radio" name="q1" value="crunchwrap"> Bold & Well-Rounded</label><br>
+            <label><input type="radio" name="q1" value="blast"> Chill & Refreshing</label><br>
+            <label><input type="radio" name="q1" value="taco"> Spicy & Unpredictable</label>
+        </div>
+
+        <div class="question">
+            <p class="question-text">2. Pick your ideal activity:</p>
+            <label><input type="radio" name="q2" value="blast"> Floating in a pool with a soda</label><br>
+            <label><input type="radio" name="q2" value="crunchwrap"> Taking charge of a group project</label><br>
+            <label><input type="radio" name="q2" value="taco"> Dancing like nobody’s watching</label>
+        </div>
+
+        <div class="question">
+            <p class="question-text">3. Favorite time of day?</p>
+            <label><input type="radio" name="q3" value="taco"> Midnight snack hour</label><br>
+            <label><input type="radio" name="q3" value="blast"> Afternoon sunshine</label><br>
+            <label><input type="radio" name="q3" value="crunchwrap"> Bright and early</label>
+        </div>
+
+        <button onclick="getResult()">Reveal My Taco Bell Identity</button>
+
+        <div id="result"></div>
+    </div>
+
+    <a href="Scratch.html#top" class="back-link">← Back to Main Page</a>
+
+    <script>
+        function getResult() {
+            const answers = [
+                document.querySelector('input[name="q1"]:checked')?.value,
+                document.querySelector('input[name="q2"]:checked')?.value,
+                document.querySelector('input[name="q3"]:checked')?.value
+            ];
+
+            if (answers.includes(undefined)) {
+                document.getElementById('result').innerText = "Please answer all questions!";
+                return;
+            }
+
+            const counts = { blast: 0, crunchwrap: 0, taco: 0 };
+            answers.forEach(ans => counts[ans]++);
+
+            let result;
+            if (counts.blast >= 2) {
+                result = "You're a Baja Blast! 🌊 Chill, refreshing, and everyone's favorite during summer.";
+            } else if (counts.crunchwrap >= 2) {
+                result = "You're a Crunchwrap Supreme! 💪 Balanced, dependable, and secretly iconic.";
+            } else {
+                result = "You're a Doritos Locos Taco! 🔥 Bold, zesty, and a little wild.";
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+
+</body>
+</html>
